@@ -1,0 +1,88 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Intelligence for hiring signals. Find leads before they post a job." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-background text-foreground selection:bg-primary selection:text-white antialiased">
+		<nav class="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-md">
+			<div class="container mx-auto px-4 h-16 flex items-center justify-between">
+				<a href="/" class="text-xl font-bold tracking-tighter flex items-center gap-2">
+					<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+						<span class="text-white text-lg italic">H</span>
+					</div>
+					<span>HiringSignals<span class="text-primary">.io</span></span>
+				</a>
+				<div class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+					<a href="/search" class="hover:text-foreground transition-colors">Search</a>
+					<a href="/pricing" class="hover:text-foreground transition-colors">Pricing</a>
+					<a href="/dashboard" class="hover:text-foreground transition-colors">Dashboard</a>
+				</div>
+				<div class="flex items-center gap-4">
+					<a href="/login" class="text-sm font-medium hover:text-primary transition-colors">Log in</a>
+					<a href="/search" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">
+						Get Started
+					</a>
+				</div>
+			</div>
+		</nav>
+		<main>
+			<slot />
+		</main>
+		<footer class="border-t border-white/10 py-12 mt-24">
+			<div class="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+				<div class="col-span-2">
+					<span class="text-lg font-bold">HiringSignals.io</span>
+					<p class="text-muted text-sm mt-4 max-w-xs">
+						Predictive hiring intelligence for high-growth sales teams.
+					</p>
+				</div>
+				<div>
+					<h4 class="font-bold mb-4">Product</h4>
+					<ul class="text-sm text-muted space-y-2">
+						<li><a href="/search" class="hover:text-foreground transition-colors">Search Leads</a></li>
+						<li><a href="/pricing" class="hover:text-foreground transition-colors">Pricing</a></li>
+						<li><a href="/api" class="hover:text-foreground transition-colors">API Docs</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="font-bold mb-4">Company</h4>
+					<ul class="text-sm text-muted space-y-2">
+						<li><a href="/about" class="hover:text-foreground transition-colors">About Us</a></li>
+						<li><a href="/contact" class="hover:text-foreground transition-colors">Contact</a></li>
+						<li><a href="/privacy" class="hover:text-foreground transition-colors">Privacy Policy</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+
+	:root {
+		--container-max-width: 1200px;
+	}
+
+	.container {
+		max-width: var(--container-max-width);
+	}
+</style>

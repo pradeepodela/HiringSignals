@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { db } from '../../db';
+import { seoPages } from '../../db/schema';
+
+const categories = await db.select({ category: seoPages.category }).from(seoPages).groupBy(seoPages.category);
+---
+
+<Layout title="All Hiring Signals | HiringSignals.io">
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-extrabold text-slate-900 mb-12">Explore Hiring Signals</h1>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {categories.map((cat) => (
+          <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">{cat.category}</h2>
+            <p class="text-slate-500 mb-6">Explore the latest hiring trends and growth signals in the {cat.category} sector.</p>
+            <a href={`/signals?category=${cat.category}`} class="text-brand-600 font-bold hover:underline">View Industry Report →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

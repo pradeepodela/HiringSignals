@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { createOrder } from '../lib/cashfree';
+
+const plan = Astro.url.searchParams.get('plan') || 'pro';
+const amount = plan === 'pro' ? 4999 : 0;
+let paymentSessionId = '';
+let error = '';
+
+if (Astro.request.method === 'POST') {
+  try {
+    const formData = await Astro.request.formData();
+    const email = formData.get('email') as string;
+    const orderId = 'order_' + Date.now();
+    
+    const response = await createOrder(orderId, amount, email);
+    paymentSessionId = response.payment_session_id;
+  } catch (e) {
+    error = 'Failed to initiate payment. Please try again.';
+    console.error(e);
+  }
+}
+---
+
+<Layout title="Checkout | HiringSignals.io">
+	<section class="py-20">
+		<div class="container mx-auto px-4 max-w-2xl">
+			<h1 class="text-3xl font-bold mb-8">Complete your Upgrade</h1>
+			
+			<div class="bg-secondary/30 border border-white/10 rounded-2xl p-8 mb-8">
+				<div class="flex justify-between items-center mb-6 pb-6 border-b border-white/10">
+					<div>
+						<h3 class="font-bold text-xl uppercase">{plan} Plan</h3>
+						<p class="text-sm text-muted">Billed monthly</p>
+					</div>
+					<div class="text-right">
+						<span class="text-2xl font-bold">₹{amount.toLocaleString()}</span>
+					</div>
+				</div>
+
+				{paymentSessionId ? (
+					<div class="text-center py-8">
+						<h3 class="text-xl font-bold mb-4">Payment Ready</h3>
+						<p class="text-muted mb-8">Redirecting you to our secure payment partner...</p>
+						
+						<!-- Cashfree Checkout Integration (Frontend Component) -->
+						<button 
+							id="renderBtn"
+							data-session={paymentSessionId}
+							class="bg-primary hover:bg-primary-dark text-white font-bold px-12 py-4 rounded-xl transition-all shadow-lg shadow-primary/30"
+						>
+							Pay Now with Cashfree
+						</button>
+						
+						<script>
+							// In a real app, you'd load the Cashfree SDK
+							// <script src="https://sdk.cashfree.com/js/v3/cashfree.js">
+							document.getElementById('renderBtn')?.addEventListener('click', (e) => {
+								const sessionId = e.currentTarget.dataset.session;
+								alert('Cashfree Checkout would open here with Session ID: ' + sessionId);
+								// window.location.href = `https://payments.cashfree.com/checkout/post/${sessionId}`;
+							});
+						</script>
+					</div>
+				) : (
+					<form method="POST" class="space-y-6">
+						<div class="space-y-2">
+							<label class="text-xs font-bold uppercase text-muted">Email Address</label>
+							<input 
+								type="email" 
+								name="email" 
+								required 
+								placeholder="you@company.com"
+								class="w-full bg-background border border-white/10 rounded-xl p-4 text-sm focus:border-primary transition-all"
+							/>
+						</div>
+						
+						{error && <p class="text-red-500 text-sm">{error}</p>}
+						
+						<button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/30">
+							Initialize Payment
+						</button>
+						
+						<p class="text-center text-xs text-muted">
+							Payments are secure and handled by Cashfree PG. 
+							By continuing, you agree to our Terms of Service.
+						</p>
+					</form>
+				)}
+			</div>
+		</div>
+	</section>
+</Layout>

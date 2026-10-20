@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Dashboard | HiringSignals.io">
+	<section class="py-12">
+		<div class="container mx-auto px-4">
+			<div class="flex flex-col md:flex-row justify-between items-end gap-4 mb-12">
+				<div>
+					<h1 class="text-3xl font-bold mb-2">Welcome back, Pradeep</h1>
+					<p class="text-muted">You have 12 new hiring signals since your last visit.</p>
+				</div>
+				<div class="flex gap-2">
+					<button class="bg-secondary/50 border border-white/10 px-4 py-2 rounded-lg text-sm font-bold">Export CSV</button>
+					<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-primary/20">+ Create Alert</button>
+				</div>
+			</div>
+
+			<!-- Stats Grid -->
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+				{[
+					{ label: 'Leads Found', val: '1,284', trend: '+12%' },
+					{ label: 'Unlocked', val: '45', trend: '+5%' },
+					{ label: 'Alerts Active', val: '8', trend: '0%' },
+					{ label: 'Credits Left', val: '950', trend: '' },
+				].map(stat => (
+					<div class="bg-secondary/30 border border-white/10 rounded-2xl p-6">
+						<span class="text-xs font-bold uppercase text-muted block mb-2">{stat.label}</span>
+						<div class="flex items-end gap-2">
+							<span class="text-3xl font-bold">{stat.val}</span>
+							<span class="text-xs text-green-500 font-bold mb-1">{stat.trend}</span>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				<div class="lg:col-span-2 space-y-6">
+					<h2 class="text-xl font-bold">Recent Signals</h2>
+					<div class="bg-secondary/30 border border-white/10 rounded-3xl overflow-hidden">
+						<table class="w-full text-left text-sm">
+							<thead class="bg-white/5 text-muted uppercase text-[10px] font-bold">
+								<tr>
+									<th class="p-4">Company</th>
+									<th class="p-4">Signal</th>
+									<th class="p-4 text-right">Action</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-white/5">
+								{[
+									{ name: 'Acme Corp', signal: 'New CTO appointed', loc: 'Austin' },
+									{ name: 'Stellar Labs', signal: 'Series A Funding ($12M)', loc: 'San Francisco' },
+									{ name: 'CloudScale', signal: 'New office in Bangalore', loc: 'Bangalore' },
+									{ name: 'DataMesh', signal: 'Expanding Sales team', loc: 'New York' },
+								].map(row => (
+									<tr class="hover:bg-white/5 transition-colors group">
+										<td class="p-4">
+											<div class="font-bold">{row.name}</div>
+											<div class="text-xs text-muted">{row.loc}</div>
+										</td>
+										<td class="p-4">
+											<span class="inline-block bg-primary/10 text-primary px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+												{row.signal}
+											</span>
+										</td>
+										<td class="p-4 text-right">
+											<button class="text-primary font-bold hover:underline">Unlock</button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+						<div class="p-4 text-center border-t border-white/5">
+							<a href="/search" class="text-xs font-bold text-muted hover:text-primary transition-colors">View All Signals</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-y-6">
+					<h2 class="text-xl font-bold">Saved Searches</h2>
+					<div class="space-y-3">
+						{['React Devs in SF', 'Sales Leads Austin', 'AI Startups London'].map(search => (
+							<div class="bg-secondary/30 border border-white/10 rounded-2xl p-4 flex justify-between items-center">
+								<span class="font-medium">{search}</span>
+								<button class="text-muted hover:text-foreground">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+								</button>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

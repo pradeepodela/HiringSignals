@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { generateLeadsData } from '../../utils/leads-data';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const data = generateLeadsData();
+  return data.map(item => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+const { slug } = Astro.params;
+const allLeads = generateLeadsData();
+const item = allLeads.find(l => l.slug === slug);
+
+if (!item) {
+  return Astro.redirect('/404');
+}
+
+// In a real app, we would fetch fresh leads for this niche/city from our DB
+const mockLeads = [
+  { company: 'InnoTech ' + item.city, signal: 'New job openings for ' + item.niche, date: '2 days ago' },
+  { company: 'Global Solutions', signal: 'Series A funding confirmed', date: '5 days ago' },
+  { company: 'Nexus Soft', signal: 'Expanding ' + item.niche + ' team', date: '1 week ago' },
+];
+---
+
+<Layout title={item.title} description={item.description}>
+	<section class="py-20">
+		<div class="container mx-auto px-4">
+			<nav class="text-sm text-muted mb-8">
+				<a href="/" class="hover:text-primary">Home</a> / 
+				<a href="/search" class="hover:text-primary">Leads</a> / 
+				<span class="text-foreground">{item.niche} in {item.city}</span>
+			</nav>
+			
+			<div class="bg-gradient-to-r from-primary/20 to-transparent border border-white/10 rounded-3xl p-12 mb-12">
+				<h1 class="text-4xl md:text-6xl font-bold mb-6">
+					Hiring Signals for <span class="text-primary">{item.niche}s</span> in <span class="text-primary">{item.city}</span>
+				</h1>
+				<p class="text-xl text-muted max-w-3xl">
+					Access real-time intelligence on companies hiring {item.niche}s in {item.city}. 
+					Our signals help you reach decision-makers at the exact moment they need your services.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				<div class="lg:col-span-2 space-y-6">
+					<h2 class="text-2xl font-bold">Latest Hiring Signals</h2>
+					{mockLeads.map(lead => (
+						<div class="bg-secondary/40 border border-white/10 rounded-2xl p-6 hover:border-primary/30 transition-all">
+							<div class="flex justify-between items-start mb-4">
+								<div>
+									<h3 class="text-xl font-bold">{lead.company}</h3>
+									<p class="text-primary font-medium">{lead.signal}</p>
+								</div>
+								<span class="text-xs text-muted font-mono">{lead.date}</span>
+							</div>
+							<div class="flex gap-4">
+								<button class="bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg text-sm transition-all">
+									View Detailed Signal
+								</button>
+								<button class="bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 px-4 py-2 rounded-lg text-sm transition-all">
+									Unlock Leads
+								</button>
+							</div>
+						</div>
+					))}
+				</div>
+				
+				<div class="space-y-6">
+					<div class="bg-secondary/30 border border-white/10 rounded-2xl p-6">
+						<h3 class="font-bold mb-4">Market Stats</h3>
+						<div class="space-y-4">
+							<div class="flex justify-between items-center">
+								<span class="text-sm text-muted">Active Roles</span>
+								<span class="font-mono text-primary font-bold">142</span>
+							</div>
+							<div class="flex justify-between items-center">
+								<span class="text-sm text-muted">Avg. Growth</span>
+								<span class="font-mono text-green-500 font-bold">+12%</span>
+							</div>
+							<div class="flex justify-between items-center">
+								<span class="text-sm text-muted">Top Signal</span>
+								<span class="text-sm font-bold">New Office</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="bg-primary rounded-2xl p-6 text-white">
+						<h3 class="font-bold mb-2">Get Daily Alerts</h3>
+						<p class="text-sm opacity-90 mb-4">Never miss a hiring signal for this niche again.</p>
+						<input type="email" placeholder="email@example.com" class="w-full bg-white/20 border-none rounded-lg p-2 text-sm placeholder:text-white/60 mb-2 focus:ring-white" />
+						<button class="w-full bg-white text-primary font-bold py-2 rounded-lg text-sm hover:bg-white/90 transition-all">
+							Subscribe
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

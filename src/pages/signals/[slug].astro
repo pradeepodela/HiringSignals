@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { db } from '../../db';
+import { seoPages } from '../../db/schema';
+import { eq } from 'drizzle-orm';
+
+export async function getStaticPaths() {
+  const pages = await db.select().from(seoPages);
+  return pages.map(page => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${page.title} | HiringSignals.io`} description={page.description}>
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <nav class="flex mb-8 text-sm text-slate-400">
+        <a href="/" class="hover:text-brand-600">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/signals" class="hover:text-brand-600">Signals</a>
+        <span class="mx-2">/</span>
+        <span class="text-slate-600">{page.title}</span>
+      </nav>
+
+      <div class="max-w-4xl">
+        <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">
+          {page.title}
+        </h1>
+        <p class="text-xl text-slate-600 mb-10 leading-relaxed italic border-l-4 border-brand-500 pl-6">
+          {page.description}
+        </p>
+        
+        <div class="prose prose-slate prose-lg max-w-none mb-16">
+          <p>{page.content}</p>
+          <p>
+            At HiringSignals.io, we track these trends across {page.category} and beyond. 
+            Our proprietary scraping technology identifies expansion plans, new job openings, 
+            and strategic hires before they become public knowledge.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">Want more insights?</h2>
+          <p class="text-slate-600 mb-6">Join 500+ growth leaders getting real-time hiring alerts.</p>
+          <a href="/pricing" class="inline-block px-6 py-3 bg-brand-600 text-white rounded-lg font-bold hover:bg-brand-700 transition-all">
+            Unlock Full Data
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

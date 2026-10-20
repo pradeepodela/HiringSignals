@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="HiringSignals.io | Intelligence for Sales & Recruiting">
+	<!-- Hero Section -->
+	<section class="relative pt-24 pb-16 overflow-hidden">
+		<div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent -z-10 h-[500px]"></div>
+		<div class="container mx-auto px-4 text-center">
+			<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold mb-8 backdrop-blur-sm animate-fade-in">
+				<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+				<span class="text-muted">New: Apollo.io integration is now live</span>
+			</div>
+			<h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/50">
+				Find leads before they <br class="hidden md:block" /> even post a job.
+			</h1>
+			<p class="text-xl text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+				Predictive hiring intelligence that identifies companies expanding their teams based on social signals, funding, and office growth.
+			</p>
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<a href="/search" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg shadow-primary/20">
+					Start Searching for Free
+				</a>
+				<a href="#demo" class="px-8 py-4 rounded-full font-bold text-lg border border-white/10 hover:bg-white/5 transition-all">
+					View Demo
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Bento Grid Features -->
+	<section class="py-24 container mx-auto px-4">
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[200px]">
+			<div class="md:col-span-8 md:row-span-2 bg-secondary/50 border border-white/10 rounded-3xl p-8 flex flex-col justify-end group overflow-hidden relative">
+				<div class="absolute top-0 right-0 p-8 text-primary group-hover:scale-110 transition-transform duration-500">
+					<!-- Icon placeholder -->
+					<div class="w-16 h-16 bg-primary/20 rounded-2xl border border-primary/30 flex items-center justify-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.3-4.3"/><circle cx="10" cy="10" r="7"/><path d="M10 7v6"/><path d="M7 10h6"/></svg>
+					</div>
+				</div>
+				<h3 class="text-3xl font-bold mb-4">Hyper-Targeted Search</h3>
+				<p class="text-muted text-lg max-w-md">
+					Filter by niche, city, and hiring signal confidence. Find the exact companies you want to reach.
+				</p>
+			</div>
+			
+			<div class="md:col-span-4 md:row-span-2 bg-primary/10 border border-primary/20 rounded-3xl p-8 flex flex-col justify-end relative overflow-hidden">
+				<div class="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-primary rounded-full blur-[80px] opacity-20"></div>
+				<h3 class="text-2xl font-bold mb-4">1,000+ Cities</h3>
+				<p class="text-muted">
+					Global coverage for hiring trends. From San Francisco to Singapore.
+				</p>
+			</div>
+
+			<div class="md:col-span-4 md:row-span-2 bg-secondary/50 border border-white/10 rounded-3xl p-8 flex flex-col justify-end">
+				<h3 class="text-2xl font-bold mb-4">Apify Powered</h3>
+				<p class="text-muted">
+					Real-time data scraping from Google Maps, LinkedIn, and Career pages.
+				</p>
+			</div>
+
+			<div class="md:col-span-8 md:row-span-2 bg-secondary/50 border border-white/10 rounded-3xl p-8 flex items-center justify-between group">
+				<div class="max-w-sm">
+					<h3 class="text-2xl font-bold mb-4">Cashfree PG Integration</h3>
+					<p class="text-muted">
+						Secure, instant payments in INR for professional and enterprise plans.
+					</p>
+				</div>
+				<div class="hidden sm:block w-32 h-32 bg-accent/20 rounded-full border border-accent/30 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+					<span class="text-4xl">₹</span>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

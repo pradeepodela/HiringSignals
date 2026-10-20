@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pricing | HiringSignals.io">
+	<section class="py-24">
+		<div class="container mx-auto px-4 text-center mb-16">
+			<h1 class="text-4xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
+			<p class="text-xl text-muted max-w-2xl mx-auto">
+				Choose the plan that fits your growth strategy. Scale as you find more leads.
+			</p>
+		</div>
+
+		<div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+			<!-- Free Plan -->
+			<div class="bg-secondary/30 border border-white/10 rounded-3xl p-8 flex flex-col h-full hover:border-white/20 transition-all">
+				<h3 class="text-xl font-bold mb-2">Starter</h3>
+				<p class="text-muted text-sm mb-6">Perfect for solo recruiters.</p>
+				<div class="mb-8">
+					<span class="text-4xl font-bold">₹0</span>
+					<span class="text-muted">/month</span>
+				</div>
+				<ul class="space-y-4 mb-10 flex-grow">
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						50 leads per month
+					</li>
+					<li class="flex items-center gap-2 text-sm text-muted">
+						<svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+						API Access
+					</li>
+					<li class="flex items-center gap-2 text-sm text-muted">
+						<svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+						Custom Alerts
+					</li>
+				</ul>
+				<a href="/search" class="w-full py-3 rounded-xl border border-white/10 font-bold hover:bg-white/5 transition-all text-center">
+					Get Started
+				</a>
+			</div>
+
+			<!-- Pro Plan -->
+			<div class="bg-primary/5 border-2 border-primary rounded-3xl p-8 flex flex-col h-full relative overflow-hidden shadow-2xl shadow-primary/10 scale-105">
+				<div class="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-widest">Most Popular</div>
+				<h3 class="text-xl font-bold mb-2">Professional</h3>
+				<p class="text-muted text-sm mb-6">For high-performing sales teams.</p>
+				<div class="mb-8">
+					<span class="text-4xl font-bold">₹4,999</span>
+					<span class="text-muted">/month</span>
+				</div>
+				<ul class="space-y-4 mb-10 flex-grow">
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						1,000 leads per month
+					</li>
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						Full Contact Data
+					</li>
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						CRM Export (Hubspot/Pipedrive)
+					</li>
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						Custom Slack Alerts
+					</li>
+				</ul>
+				<a href="/checkout?plan=pro" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold transition-all text-center shadow-lg shadow-primary/30">
+					Upgrade Now
+				</a>
+			</div>
+
+			<!-- Enterprise Plan -->
+			<div class="bg-secondary/30 border border-white/10 rounded-3xl p-8 flex flex-col h-full hover:border-white/20 transition-all">
+				<h3 class="text-xl font-bold mb-2">Enterprise</h3>
+				<p class="text-muted text-sm mb-6">Custom intelligence for scale.</p>
+				<div class="mb-8">
+					<span class="text-4xl font-bold">Custom</span>
+				</div>
+				<ul class="space-y-4 mb-10 flex-grow">
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						Unlimited leads
+					</li>
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						Dedicated Account Manager
+					</li>
+					<li class="flex items-center gap-2 text-sm">
+						<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+						Custom Data Scraping
+					</li>
+				</ul>
+				<a href="/contact" class="w-full py-3 rounded-xl border border-white/10 font-bold hover:bg-white/5 transition-all text-center">
+					Contact Sales
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
